@@ -1,6 +1,19 @@
 from bs4 import BeautifulSoup
 import requests
 import time
+from urllib.parse import urlparse
+def validate_url(url):
+    parsed=urlparse(url)
+    if parsed.scheme not in ("http","https"):
+        raise ValueError("Only http and https urls are supported")
+    if not parsed.netloc or not parsed.hostname:
+        raise ValueError("Invalid url: hostname is missing")
+    return True
+def fetch_page(url):
+    validate_url(url)
+    response=requests.get(url,timeout=10)
+    response.raise_for_status()
+    return response.text
 def scrape_books(url):
     response=requests.get(url)
     response.raise_for_status() #if website is down this helps
@@ -35,6 +48,8 @@ def scrape_all_pages(base_url,max_pages=5):
     return all_books
 if __name__=="__main__":
     BASE_URL="https://books.toscrape.com"
+    #BASE_URL="https://www.flipkart.com/apple-iphone-17-pro-max-cosmic-orange-256-gb/p/itm81f3a173391c4?pid=MOBHFN6YQKMWVPXH&param=23456789&BU=Mobile&pageUID=1793979890390"
+    #BASE_URL="https://www.flipkart.com"
     data=scrape_all_pages(BASE_URL,max_pages=3)
     print(len(data))
     print("first book")

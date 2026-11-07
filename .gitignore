@@ -1,1 +1,15 @@
 .exe
+.txt
+requirements.txt
+.vscode/settings.json
+src/products.json
+src/__pycache__/parser.cpython-311.pyc
+.env
+.env.example
+config/products.json
+src/__pycache__/__init__.cpython-311.pyc
+src/__pycache__/main.cpython-311-pytest-9.2.0.pyc
+src/__pycache__/validator.cpython-311.pyc
+tests/__pycache__/test_validators.cpython-311-pytest-9.2.0.pyc
+src/__pycache__/main.cpython-311.pyc
+tests/__pycache__/test_products.cpython-311-pytest-9.2.0.pyc
